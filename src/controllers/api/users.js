@@ -27,7 +27,21 @@ const getUserById = async (req, res) => {
 };
 
 const createNewUser = async (req, res) => {
-  console.log("Create New User");
+  return res.send("createUser");
 };
 
-module.exports = { getAllUsers, getUserById, createNewUser };
+const updateUserById = async (req, res) => {
+  return res.send("updateUser");
+};
+
+const deleteUserById = async (req, res) => {
+  return res.send("deleteUser");
+};
+
+module.exports = {
+  getAllUsers,
+  getUserById,
+  createNewUser,
+  updateUserById,
+  deleteUserById,
+};
