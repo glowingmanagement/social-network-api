@@ -1,6 +1,7 @@
 [{
     "userName": "user1",
-    "email": "user1@email.com"
+    "email": "user1@email.com",
+    "thoughts": []
 },
 {
     "userName": "user2",

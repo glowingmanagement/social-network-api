@@ -26,4 +26,8 @@ const getUserById = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getUserById };
+const createNewUser = async (req, res) => {
+  console.log("Create New User");
+};
+
+module.exports = { getAllUsers, getUserById, createNewUser };

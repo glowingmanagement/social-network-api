@@ -22,7 +22,12 @@ const thoughtSchema = {
   reactions: reactionSchema,
 };
 
-const schema = new Schema(thoughtSchema);
+const schema = new Schema(thoughtSchema, {
+  toJSON: {
+    getters: true,
+  },
+  id: false,
+});
 
 const Thought = model("Thought", schema);
 

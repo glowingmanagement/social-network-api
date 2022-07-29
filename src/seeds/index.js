@@ -21,18 +21,22 @@ const init = async () => {
     console.log("[INFO]: Successfully connected to DB");
 
     await User.deleteMany({});
-    await Thoughts.deleteMany({});
-
-    // seed users
-    const userPromises = users.map((user) => {
-      return User.create(user);
-    });
-    await Promise.all(userPromises);
+    await User.insertMany(users);
     console.log("[INFO]: Successfully seeded users");
 
+    await Thoughts.deleteMany({});
+    await Thoughts.insertMany(thoughts);
+
+    const thoughtsFromDb = await Thoughts.find({});
+    const usersFromDb = await User.find({});
+
     // seed Thoughts
-    const thoughtPromises = thoughts.map((thought) => {
-      return Thoughts.create(thought);
+    const thoughtPromises = thoughtsFromDb.map(async (thought) => {
+      const username = thought.userName;
+      const user = usersFromDb.find((user) => user.userName === username);
+      console.log(user);
+      user.thoughts.push(thought._id.toString());
+      await User.findByIdAndUpdate(user._id, { ...user });
     });
     await Promise.all(thoughtPromises);
     console.log("[INFO]: Successfully seeded thoughts");
