@@ -46,7 +46,18 @@ const createNewUser = async (req, res) => {
 };
 
 const updateUserById = async (req, res) => {
-  return res.send("updateUser");
+  try {
+    const { id } = req.params;
+    const { userName, email } = req.body;
+    await User.findByIdAndUpdate(id, {
+      userName,
+      email,
+    });
+    return res.json({ success: true });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to update user | ${error.message}`);
+    return res.status(500).json({ success: false, error: error.message });
+  }
 };
 
 const deleteUserById = async (req, res) => {
