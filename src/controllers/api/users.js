@@ -61,7 +61,14 @@ const updateUserById = async (req, res) => {
 };
 
 const deleteUserById = async (req, res) => {
-  return res.send("deleteUser");
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+    return res.json({ success: true });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to delete user | ${error.message}`);
+    return res.status(500).json({ success: false, error: error.message });
+  }
 };
 
 module.exports = {
