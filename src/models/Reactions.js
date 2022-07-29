@@ -1,7 +1,18 @@
-const { Schema } = require("mongoose");
+const { Schema, Types } = require("mongoose");
 const moment = require("moment");
 
+const newId = () => {
+  const id = new Types.ObjectId();
+
+  return id.toString();
+};
+
 const reactionSchema = {
+  reactionId: {
+    type: String,
+    required: true,
+    default: newId(),
+  },
   reactionBody: {
     type: String,
     required: true,

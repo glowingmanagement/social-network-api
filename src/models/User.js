@@ -24,6 +24,18 @@ const userSchema = {
       "Please fill a valid email address",
     ],
   },
+  thoughts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Thoughts",
+    },
+  ],
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 };
 
 const schema = new Schema(userSchema);
