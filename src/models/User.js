@@ -26,3 +26,9 @@ const validateEmail = (email) => {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
 };
+
+const schema = new Schema(userSchema);
+
+const User = model("User", schema);
+
+module.exports = User;
