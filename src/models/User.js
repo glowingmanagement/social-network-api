@@ -1,5 +1,9 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
+
+const validateEmail = (email) => {
+  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email);
+};
 
 const userSchema = {
   userName: {
@@ -20,11 +24,6 @@ const userSchema = {
       "Please fill a valid email address",
     ],
   },
-};
-
-const validateEmail = (email) => {
-  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email);
 };
 
 const schema = new Schema(userSchema);
