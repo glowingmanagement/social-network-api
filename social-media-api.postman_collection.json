@@ -53,6 +53,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"Josh\",\n    \"email\": \"josh@email.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:4000/api/users/",
 					"protocol": "http",
@@ -62,7 +71,7 @@
 					"port": "4000",
 					"path": [
 						"api",
-						"users",
+						"users"
 					]
 				}
 			},
@@ -74,6 +83,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"userName\": \"Dave\",\n    \"email\": \"Dave@email.com\"\n}",
+					"options": {
+					  "raw": {
+						"language": "json"
+					  }
+					}
+				  },
 				"url": {
 					"raw": "http://localhost:4000/api/users/62e40c8f471d1eb5ac88d6bf",
 					"protocol": "http",
@@ -107,6 +125,131 @@
 						"api",
 						"users",
                         "62e40c8f471d1eb5ac88d6bf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all thoughts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/thoughts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"thoughts"
+					]
+				}
+			},
+			"response": []
+		},
+        {
+			"name": "Get thoughts by id",
+            
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/thoughts/62e40c90471d1eb5ac88d6c3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"thoughts",
+                        "62e40c90471d1eb5ac88d6c3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new thought",
+            
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"userName\": \"Josh\",\n    \"thoughtText\": \"A new created thought\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/thoughts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"thoughts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update thought by id",
+            
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"userName\": \"user1\",\n    \"thoughtText\": \"Update my thoughts\"\n}",
+					"options": {
+					  "raw": {
+						"language": "json"
+					  }
+					}
+				  },
+				"url": {
+					"raw": "http://localhost:4000/api/thoughts/62e40c90471d1eb5ac88d6c3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"thoughts",
+                        "62e40c90471d1eb5ac88d6c3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user by id",
+            
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/thoughts/62e40c90471d1eb5ac88d6c3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"thoughts",
+                        "62e40c90471d1eb5ac88d6c3"
 					]
 				}
 			},
