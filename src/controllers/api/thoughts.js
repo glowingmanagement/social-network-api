@@ -27,7 +27,21 @@ const getThoughtById = async (req, res) => {
 };
 
 const createNewThought = async (req, res) => {
-  return res.send("createThought");
+  try {
+    const { id } = req.params;
+    const { userName, thoughtText } = req.body;
+    console.log(req.body);
+    if (userName || thoughtText) {
+      await User.findByIdAndUpdate(id, {
+        userName,
+        thoughtText,
+      });
+      return res.json({ success: true });
+    } else res.status(500).json({ success: false });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to update thought | ${error.message}`);
+    return res.status(500).json({ success: false, error: error.message });
+  }
 };
 
 const updateThoughtById = async (req, res) => {
