@@ -49,11 +49,14 @@ const updateUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const { userName, email } = req.body;
-    await User.findByIdAndUpdate(id, {
-      userName,
-      email,
-    });
-    return res.json({ success: true });
+    console.log(req.body);
+    if (userName || email) {
+      await User.findByIdAndUpdate(id, {
+        userName,
+        email,
+      });
+      return res.json({ success: true });
+    } else res.status(500).json({ success: false });
   } catch (error) {
     console.log(`[ERROR]: Failed to update user | ${error.message}`);
     return res.status(500).json({ success: false, error: error.message });
