@@ -1,4 +1,4 @@
-const { User } = require("../../models");
+const { User, Thoughts } = require("../../models");
 
 const getAllUsers = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ const getAllUsers = async (req, res) => {
 
     return res.json({ data: users });
   } catch (error) {
-    console.log(`[Error]: Failed to get all bikes | ${error.message}`);
+    console.log(`[Error]: Failed to get all users | ${error.message}`);
   }
 };
 
@@ -22,7 +22,7 @@ const getUserById = async (req, res) => {
 
     return res.json({ data: user });
   } catch (error) {
-    console.log(`[Error]: Failed to get all bikes | ${error.message}`);
+    console.log(`[Error]: Failed to get user | ${error.message}`);
   }
 };
 
@@ -65,11 +65,20 @@ const updateUserById = async (req, res) => {
 
 const deleteUserById = async (req, res) => {
   try {
-    const { id } = req.params;
-    await User.findByIdAndDelete(id);
-    return res.json({ success: true });
-  } catch (error) {
-    console.log(`[ERROR]: Failed to delete user | ${error.message}`);
+    const user = await User.findById(id);
+    const userThoughts = user.thoughts;
+    await Thoughts.deleteMany({ userThoughts });
+
+    try {
+      const { id } = req.params;
+      await User.findByIdAndDelete(id);
+      return res.json({ success: true });
+    } catch (error) {
+      console.log(`[ERROR]: Failed to delete user | ${error.message}`);
+      return res.status(500).json({ success: false, error: error.message });
+    }
+  } catch {
+    console.log(`[Error]: Failed to get user | ${error.message}`);
     return res.status(500).json({ success: false, error: error.message });
   }
 };
