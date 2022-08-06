@@ -34,7 +34,6 @@ const init = async () => {
     const thoughtPromises = thoughtsFromDb.map(async (thought) => {
       const username = thought.userName;
       const user = usersFromDb.find((user) => user.userName === username);
-      console.log(user);
       user.thoughts.push(thought._id.toString());
       await User.findByIdAndUpdate(user._id, { ...user });
     });

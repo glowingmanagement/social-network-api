@@ -49,7 +49,6 @@ const updateUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const { userName, email } = req.body;
-    console.log(req.body);
     if (userName || email) {
       await User.findByIdAndUpdate(id, {
         userName,
@@ -64,20 +63,21 @@ const updateUserById = async (req, res) => {
 };
 
 const deleteUserById = async (req, res) => {
+  const { id } = req.params;
   try {
     const user = await User.findById(id);
     const userThoughts = user.thoughts;
-    await Thoughts.deleteMany({ userThoughts });
+    console.log(userThoughts);
+    await Thoughts.deleteMany({ _id: userThoughts });
 
     try {
-      const { id } = req.params;
       await User.findByIdAndDelete(id);
       return res.json({ success: true });
     } catch (error) {
       console.log(`[ERROR]: Failed to delete user | ${error.message}`);
       return res.status(500).json({ success: false, error: error.message });
     }
-  } catch {
+  } catch (error) {
     console.log(`[Error]: Failed to get user | ${error.message}`);
     return res.status(500).json({ success: false, error: error.message });
   }
