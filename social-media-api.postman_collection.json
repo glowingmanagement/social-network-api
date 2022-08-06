@@ -335,6 +335,30 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Delete reaction",
+            
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/thoughts/62ee955f18db727e9d31a1f2/reaction/62ee96e5c7b0c4abb6a60be9/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"thoughts",
+						"62ee955f18db727e9d31a1f2",
+						"reaction",
+						"62ee96e5c7b0c4abb6a60be9"
+					]
+				}
+			},
+			"response": []
 		}
     ]
 }
